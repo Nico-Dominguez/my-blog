@@ -21,7 +21,7 @@ const MobileNav = () => {
         </Button>
       </SheetTrigger>
       <SheetContent side="right">
-        <span className="uppercase font-bold">Nico's Blog</span>
+        <span className="uppercase font-bold">Nico&rsquo;s Blog</span>
         <div className="py-8 flex flex-col justify-between h-full items-start">
           <div className="flex flex-col gap-y-8 text-2xl ">
             <MobileLink

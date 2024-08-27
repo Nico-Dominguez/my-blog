@@ -19,10 +19,10 @@ const Hero = () => {
           </p>
         </div>
         <p className="mb-5 text-zinc-500 dark:text-zinc-500">
-          I've been learning for about one year now. Life has taken me through
-          many journeys, but this seems to be my greatest challenge yet. However
-          with all the rigors, the feeling of extasy is worth it when I create
-          projects that are functional, responsive, and user-friendly.
+          I&rsquo;ve been learning for about one year now. Life has taken me
+          through many journeys, but this seems to be my greatest challenge yet.
+          However with all the rigors, the feeling of extasy is worth it when I
+          create projects that are functional, responsive, and user-friendly.
         </p>
         <p className="text-zinc-600 dark:text-zinc-500">
           You can find me on{" "}
