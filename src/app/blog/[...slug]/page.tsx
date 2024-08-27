@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import "@/styles/mdx.css";
 import { Metadata } from "next";
 import { siteConfig } from "../../../../config/site";
-import { url } from "inspector";
 
 interface PostPageProps {
   params: {
@@ -19,7 +18,7 @@ async function getPostFromParams(params: PostPageProps["params"]) {
   return post;
 }
 
-export async function generateMetaData({
+export async function generateMetadata({
   params,
 }: PostPageProps): Promise<Metadata> {
   const post = await getPostFromParams(params);
