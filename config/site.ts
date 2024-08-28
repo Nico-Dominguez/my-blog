@@ -7,6 +7,7 @@ export const siteConfig = {
     twitter: "https://x.com/webdevnico",
     github: "https://github.com/Nico-Dominguez",
     personalSite: "https://nico-dominguez-portfolio.netlify.app/",
+    linkedin: "https://www.linkedin.com/in/nnicodominguez/",
   },
 };
 
