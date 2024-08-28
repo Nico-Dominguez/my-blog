@@ -11,8 +11,8 @@ const Projects = () => {
         <ProjectCards
           name="Nico"
           time="5"
-          title="Project 1"
-          description="this is going to be a quick summary of the project I made. It will take 5 minutes to read"
+          title="Marketing Portfolio"
+          description="Created a website using vite With React to showcase my portfolio"
         />
         <ProjectCards
           name="Nico"

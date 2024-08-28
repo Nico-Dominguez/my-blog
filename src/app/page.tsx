@@ -3,6 +3,7 @@
 import Hero from "@/components/home-page/Hero";
 import Blog from "@/components/home-page/Blog";
 import Projects from "@/components/home-page/Projects";
+import FixedContactForm from "@/components/home-page/FixedContactForm";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
           {/* project section */}
           <Projects />
         </div>
+        {/* <FixedContactForm /> */}
       </main>
     </>
   );
