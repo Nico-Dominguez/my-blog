@@ -1,5 +1,6 @@
 import React from "react";
-import { ProjectCards } from "../project-cards";
+import ProjectCard from "../project-cards";
+import { GrAchievement, GrBarChart, GrReactjs } from "react-icons/gr";
 
 const Projects = () => {
   return (
@@ -8,25 +9,27 @@ const Projects = () => {
         Projects
       </h3>
       <div className="grid w-full grid-cols-1 md:grid-cols-2 gap-4">
-        <ProjectCards
+        <ProjectCard
           name="Nico"
           time="5"
           title="Marketing Portfolio"
           description="Created a website using vite With React to showcase my portfolio"
+          icon={<GrReactjs size="40" />}
+          tags="HTML, CSS, JS, React, Tailwind, Browser-Router"
         />
-        <ProjectCards
+        <ProjectCard
           name="Nico"
           time="5"
           title="Project 1"
           description="this is going to be a quick summary of the project I made. It will take 5 minutes to read"
         />
-        <ProjectCards
+        <ProjectCard
           name="Nico"
           time="5"
           title="Project 1"
           description="this is going to be a quick summary of the project I made. It will take 5 minutes to read"
         />
-        <ProjectCards
+        <ProjectCard
           name="Nico"
           time="5"
           title="Project 1"
