@@ -1,16 +1,16 @@
 // components/CustomImage.tsx
-import Image from "next/image";
+import Image, { ImageProps } from "next/image";
 
-const CustomImage = (props) => {
+const CustomImage = (props: ImageProps) => {
   return (
-    <Image
-      {...props}
-      layout="responsive"
-      width="100%" // Full width
-      height="100%" // Full height or adjust accordingly
-      alt={props.alt || "Image"} // Provide a default alt text if none is given
-      style={{ objectFit: "cover", width: "100%", height: "auto" }} // Adjust object fit for better control
-    />
+    <div style={{ position: "relative", width: "100%", height: "auto" }}>
+      <Image
+        {...props}
+        fill // Use `fill` to make the image responsive
+        alt={props.alt || "Image"} // Provide a default alt text if none is given
+        style={{ objectFit: "cover" }} // Adjust object fit for better control
+      />
+    </div>
   );
 };
 
