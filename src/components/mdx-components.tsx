@@ -1,5 +1,6 @@
+// mdx-component.tsx
 import * as runtime from "react/jsx-runtime";
-import Image from "next/image";
+import CustomImage from "./custom-image"; // Import the custom image component
 import { Callout } from "./callout";
 
 const useMDXComponent = (code: string) => {
@@ -8,7 +9,7 @@ const useMDXComponent = (code: string) => {
 };
 
 const components = {
-  Image,
+  img: CustomImage, // Use CustomImage instead of the default next/image
   Callout,
 };
 

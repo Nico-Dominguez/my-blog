@@ -1,6 +1,7 @@
 import React from "react";
 import ProjectCard from "../project-cards";
 import { GrAchievement, GrBarChart, GrReactjs } from "react-icons/gr";
+import { siteConfig } from "../../../config/site";
 
 const Projects = () => {
   return (
@@ -16,8 +17,9 @@ const Projects = () => {
           description="Created a website using vite With React to showcase my portfolio"
           icon={<GrReactjs size="40" />}
           tags="HTML, CSS, JS, React, Tailwind, Browser-Router"
+          href={siteConfig.links.personalSite}
         />
-        <ProjectCard
+        {/* <ProjectCard
           name="Nico"
           time="5"
           title="Project 1"
@@ -34,7 +36,7 @@ const Projects = () => {
           time="5"
           title="Project 1"
           description="this is going to be a quick summary of the project I made. It will take 5 minutes to read"
-        />
+        /> */}
       </div>
     </div>
   );

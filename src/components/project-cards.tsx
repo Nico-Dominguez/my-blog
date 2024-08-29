@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, ReactElement } from "react";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 interface ProjectCardProps extends React.HTMLAttributes<HTMLDivElement> {
   name: string;
@@ -8,6 +9,7 @@ interface ProjectCardProps extends React.HTMLAttributes<HTMLDivElement> {
   description: string;
   icon?: ReactElement;
   tags?: string;
+  href: string;
 }
 
 export default function ProjectCard({
@@ -17,6 +19,7 @@ export default function ProjectCard({
   description,
   icon,
   tags,
+  href,
   className,
   ...props
 }: ProjectCardProps) {
@@ -47,17 +50,19 @@ export default function ProjectCard({
   const tagArray = tags ? tags.split(",").map((tag) => tag.trim()) : [];
 
   return (
-    <div
+    <Link
+      href={href}
       className={cn("w-full group/card", className)}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      ref={cardRef}
+      target="_blank"
       {...props}
     >
       <div
         className={cn(
-          "border cursor-pointer overflow-hidden relative card h-auto min-h-80 rounded-xl shadow-xl mx-auto flex flex-col justify-center gap-4 p-4 bg-white dark:bg-gray-800"
+          "border cursor-pointer overflow-hidden relative card h-auto min-h-80 rounded-xl shadow-xl mx-auto flex flex-col justify-center gap-4 p-4 bg-white dark:bg-gray-800 transition-all duration-300 hover:shadow-2xl"
         )}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        ref={cardRef}
       >
         {isHovered && (
           <div
@@ -97,6 +102,6 @@ export default function ProjectCard({
           )}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

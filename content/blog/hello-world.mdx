@@ -1,12 +1,203 @@
 ---
-title: Hello World
+title: My First Blog Post, Thoughts on Web Development
 description: My first post in the blogging world
 date: 2024-08-22
 published: true
 ---
 
-<Callout type="warning">Hello I am a callout</Callout>
+This is my first blog post! What's the point however? Why even make a blog post? One reason is that think this is an important step in learning how blogs work in the first place. How I can create mdx files and populate the site. The other reason, I want to share my thoughts and give you an inside of how I view this career.
 
-# Hello World
+## The origin
 
-This is my first blog post. Excited on sharing my thoughts and opinions.
+I have been learning web dev for about one year now. It has been a wild ride. I have learned so many things very quick and have at the same time realized how complex web development can get. I am only a student to the game but am motivated by the challenge
+
+<Callout type="warning">
+  "Challenges are what make life interesting and overcoming them is what makes
+  life meaningful." — Joshua J. Marine
+</Callout>
+
+I currently work as a Digital Marketing Specialist creating graphics, analyzing data, and managing social media sites. This was the precursor to me being interested in building websites myself. It started as a simple, can I put text to a webpage and upload it to the internet. I was looking at code as if it was a foreign language, frightened even.
+
+I watched a couple of youtube videos and made some very basic sites. None of them had any valuable functionality and I had not even addressed Javascript but I was proud of what I made. It was a challenge and I felt happy that I was able to complete it. But I was yearning for more. It actually felt fun, this introduced me to Scrimba.
+
+Scrimba is an online platform which teaches you frontend development. After doing my research, it was either between this or a bootcamp. I ultimately decided to do the Frontend development career path and dedicate time to complete the course. What a challenge that was. As I completed the lessons, learning important aspects of clean code: accessibility, semantic tags, and responsive design really helped me learn the right way. Then came the javascript...
+
+I was running on a high from completing the HTML and CSS sections. I thought, it wasn't so bad. Then Javascript came into play. This logic of thinking was foreign to me. I struggled hard with created basic function, dealing with closures, and learning all the methods. To this day, I am still struggling with all of the array and object methods (this is what google is for). However this new skill set unleashed a whole new level in my programming game. I began to look into creating functionality in my websites. I learned about API's and data fetching.
+
+```
+import { useState, useCallback } from "react";
+
+export default function useMovieSearch() {
+  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [totalResults, setTotalResults] = useState(0);
+  const BASE_URL = `https://www.omdbapi.com/?apikey=c47d8db3&`;
+
+  const searchMovies = useCallback(async (searchTerm, page = 1) => {
+    setIsLoading(true);
+    setError(null);
+
+    if (!searchTerm) {
+      setMovies([]);
+      setIsLoading(false);
+      setTotalResults(0);
+      return;
+    }
+
+    try {
+      const response = await fetch(`${BASE_URL}s=${searchTerm}&page=${page}`);
+      const data = await response.json();
+      setMovies(data.Search || []);
+      setTotalResults(parseInt(data.totalResults) || 0);
+    } catch (error) {
+      setError("Error fetching movie data");
+      console.error("Error fetching movie data:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  return { movies, isLoading, error, totalResults, searchMovies };
+}
+
+```
+
+this was a project I made which fetched movies from an API and populated a list of movies. Data fetching is used in web development all the time and it was something I needed to master. With practice and a lot of hours, I was able to create this function to create the functionality for my app.
+
+## Creating a portfolio
+
+I needed to get the ground running and create relevant projects that showed that I actually know what I am doing. I started by creating a simple MERN todo app. I learned a lot about the backend (thanks ChatGPT) and was able to set up a server which held my todo posts. This is was very cool and very different from what I had done before...
+
+```
+import express from "express";
+import { MongoClient } from "mongodb";
+import cors from "cors";
+import multer from "multer";
+import dotenv from "dotenv";
+import { Router } from "express";
+
+dotenv.config();
+
+const app = express();
+const PORT = process.env.PORT || 5038;
+const CONNECTION_STRING = process.env.MONGO_URI;
+const DATABASE_NAME = "todoapp";
+
+app.use(cors());
+app.use(express.json());
+
+const connectToDatabase = async () => {
+  try {
+    const client = await MongoClient.connect(CONNECTION_STRING, {
+      useUnifiedTopology: true,
+    });
+    console.log("MongoDB connection successful");
+    return client.db(DATABASE_NAME);
+  } catch (error) {
+    console.error("Failed to connect to MongoDB:", error);
+    process.exit(1);
+  }
+};
+
+const createRouter = (database) => {
+  const router = Router();
+
+  router.get("/", (req, res) => {
+    res.send("Welcome to the API!");
+  });
+
+  router.get("/api/todoapp/GetNotes", async (req, res) => {
+    try {
+      const notes = await database
+        .collection("todoappcollection")
+        .find({})
+        .toArray();
+      res.json(
+        notes.map((note) => ({ id: note.id, description: note.description }))
+      );
+    } catch (error) {
+      console.error("Error retrieving notes:", error);
+      res.status(500).send("Error retrieving notes");
+    }
+  });
+
+  router.post("/api/todoapp/AddNotes", async (req, res) => {
+    try {
+      console.log("Received request body:", req.body);
+      const { description } = req.body;
+      if (!description) {
+        console.log("Description is missing");
+        return res.status(400).json({ message: "Description is required" });
+      }
+      const count = await database
+        .collection("todoappcollection")
+        .countDocuments();
+      const newId = (count + 1).toString();
+      const result = await database.collection("todoappcollection").insertOne({
+        id: newId,
+        description,
+      });
+      console.log("Inserted document:", result);
+      res.status(201).json({
+        message: "Note added successfully",
+        note: { id: newId, description },
+      });
+    } catch (error) {
+      console.error("Error adding note:", error);
+      res
+        .status(500)
+        .json({ message: "Error adding note", error: error.toString() });
+    }
+  });
+
+  router.delete("/api/todoapp/DeleteNotes", async (req, res) => {
+    try {
+      const { id } = req.query;
+      if (!id) {
+        return res.status(400).json({ message: "ID parameter is required" });
+      }
+      const result = await database
+        .collection("todoappcollection")
+        .deleteOne({ id });
+      if (result.deletedCount === 0) {
+        return res.status(404).json({ message: "Note not found" });
+      }
+      res.status(200).json({ message: "Note removed successfully", result });
+    } catch (error) {
+      console.error("Error removing note:", error);
+      res.status(500).send("Error removing note");
+    }
+  });
+
+  return router;
+};
+
+const startServer = async () => {
+  const database = await connectToDatabase();
+  const router = createRouter(database);
+  app.use(router);
+
+  app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+  });
+};
+
+startServer().catch(console.error);
+
+
+```
+
+With the help of youtube and ChatGPT I was able to create a simple backend with multiple routes: post, get, patch, and delete. I learned how to work with a database (mongoDB) and how that stores my data to display for the frontend. I still do not consider my self proficient in backend in any way, but It was a cool project to gain exposure to the subject. In the future, I'm looking to create more projects including backend as I ultimately want to become a fullstack developer.
+
+## Web design
+
+Along with learning the basics of REST API's, I wanted to practice my skills in web design and UX/UI. I created a simple barbershop website which grabs the attention of the user.
+
+<img src="/scbss.png" alt="My Image" />
+
+This was a fun project which flexed my HTML & CSS skills and showed that I could create responsive sites which are accessible.
+
+## My future
+
+My goal is to become a frontend developer. I am passionate about the subject and look to learn new things every day. In the near future, I want to delve into the world of animations with GSAP and Framer Motion. Right now however, I am looking for a job. Until then, I will keep studying and creating projects. Thanks for reading this super long blog post of me rambling. I hope I can connect with some of you in the future!
