@@ -54,9 +54,9 @@ export default function ProjectCard({
       href={href}
       className={cn("w-full group/card", className)}
       target="_blank"
-      {...props}
     >
       <div
+        {...props} // Pass only valid props for HTMLDivElement here
         className={cn(
           "border cursor-pointer overflow-hidden relative card h-auto min-h-80 rounded-xl shadow-xl mx-auto flex flex-col justify-center gap-4 p-4 bg-white dark:bg-gray-800 transition-all duration-300 hover:shadow-2xl"
         )}
