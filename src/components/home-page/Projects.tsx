@@ -19,24 +19,20 @@ const Projects = () => {
           tags="HTML, CSS, JS, React, Tailwind, Browser-Router"
           href={siteConfig.links.personalSite}
         />
-        {/* <ProjectCard
+        <ProjectCard
           name="Nico"
           time="5"
           title="Project 1"
           description="this is going to be a quick summary of the project I made. It will take 5 minutes to read"
+          href={siteConfig.links.github}
         />
         <ProjectCard
           name="Nico"
           time="5"
           title="Project 1"
           description="this is going to be a quick summary of the project I made. It will take 5 minutes to read"
+          href={siteConfig.links.github}
         />
-        <ProjectCard
-          name="Nico"
-          time="5"
-          title="Project 1"
-          description="this is going to be a quick summary of the project I made. It will take 5 minutes to read"
-        /> */}
       </div>
     </div>
   );
