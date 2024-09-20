@@ -2,6 +2,7 @@ import React from "react";
 import ProjectCard from "../project-cards";
 import { GrAchievement, GrBarChart, GrReactjs } from "react-icons/gr";
 import { siteConfig } from "../../../config/site";
+import { FaSuitcase } from "react-icons/fa";
 
 const Projects = () => {
   return (
@@ -20,11 +21,13 @@ const Projects = () => {
           href={siteConfig.links.personalSite}
         />
         <ProjectCard
-          name="Nico"
+          name="GRN Dublin"
           time="5"
-          title="Project 1"
-          description="this is going to be a quick summary of the project I made. It will take 5 minutes to read"
-          href={siteConfig.links.github}
+          title="GRN Dublin"
+          description="Developed a website for a staffing company who's industry lies in Pharmaceuticals and Medical Device Manufacturing"
+          icon={<FaSuitcase size="40" />}
+          tags="Nextjs, tailwindcss, HTML, CSS, JS, React"
+          href="https://grn-dublin.vercel.app/"
         />
         <ProjectCard
           name="Nico"
