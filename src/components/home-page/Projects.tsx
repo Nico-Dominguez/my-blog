@@ -1,6 +1,8 @@
 import React from "react";
 import ProjectCard from "../project-cards";
-import { GrAchievement, GrBarChart, GrReactjs } from "react-icons/gr";
+import { GrReactjs } from "react-icons/gr";
+import { FaVanShuttle } from "react-icons/fa6";
+
 import { siteConfig } from "../../../config/site";
 import { FaSuitcase } from "react-icons/fa";
 
@@ -30,11 +32,13 @@ const Projects = () => {
           href="https://grn-dublin.vercel.app/"
         />
         <ProjectCard
-          name="Nico"
+          name="Van Life"
           time="5"
-          title="Project 1"
-          description="this is going to be a quick summary of the project I made. It will take 5 minutes to read"
-          href={siteConfig.links.github}
+          title="Van Life App"
+          description="Built an rental van app. Build using React Router and includes simple authentication"
+          icon={<FaVanShuttle size="40" />}
+          tags="React, CSS, React-Router, Firebase"
+          href="https://vanlifeappnico.netlify.app/"
         />
         <ProjectCard
           name="Nico"
