@@ -19,10 +19,13 @@ const Hero = () => {
           </p>
         </div>
         <p className="mb-5 text-zinc-500 dark:text-zinc-500">
-          I&rsquo;ve been learning for about one year now. Life has taken me
-          through many journeys, but this seems to be my greatest challenge yet.
-          However with all the rigors, the feeling of extasy is worth it when I
-          create projects that are functional, responsive, and user-friendly.
+          I&rsquo;ve been on this coding journey for about a year now, and let
+          me tell you, it&rsquo;s been quite a ride. Life&rsquo;s thrown a lot
+          at me before, but learning web development? That&rsquo;s a whole new
+          ball game. It&rsquo;s tough, no doubt about it. But man, when I build
+          something that actually works, looks good on any screen, and people
+          find easy to use? That feeling is hard to beat. It makes all the
+          late-night debugging sessions worth it.
         </p>
         <p className="text-zinc-600 dark:text-zinc-500">
           You can find me on{" "}

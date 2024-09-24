@@ -1,0 +1,103 @@
+---
+title: Resources I Use Everyday
+description: These are some of the websites that I like to use when developing.
+date: 2024-09-20
+published: true
+---
+
+As a frontend developer, you need inspiration in order to create a website for a client. Sometimes have many good ideas but you need some help implementing them. I'm going to share a couple of resources which have helped me become a better frontend developer.
+
+## UI Goodies
+
+link: https://uigoodies.com/
+
+This website is really good for finding other resources which could help you out in web development. From icons, to graphics to color generators, I find myself coming back to check out what other people are creating
+
+1. Landingfolio - find inspiration for landing pages based on industry
+2. Accessible Colors - double check your sites color pallete to see if it is passes contrast accessibility
+3. fffuel - a curates svg's that contain gradients, patterns, textures, shapes and backgrounds.
+
+Overall, UI Goodies serves as a starting point when looking for inspiration and there are many different options which helps you develop a clear plan of action for your personal projects
+
+## Codyhouse
+
+link: https://codyhouse.co/
+
+<img src="/diagonal-section.png" alt="picture of Nico" />
+
+Codyhouse is a component library which creates custom components that are customizable and reduces your time in development. There are many free components but also paid components should you chose to pay
+
+I used the diagonal section component in my GRN Dublin website recently and it looks great! In trying to figure out how to create a diagonal section myself, I was struggling to implement the feature, however by just using the component from codyhouse, I was able to creat the diagonal effect that works both on mobile and desktop screen sizes.
+
+There are many different components to chose from and most of them even include functionality out of the box. Definitely a slept on component library.
+
+## Mantine
+
+link: https://mantine.dev/
+
+Mantine is another component library but this differs in the fact that not only does it provide components, it also provides hooks, forms, charts, even style guides. This has helped me develop a better structure when styling websites and has helped me reduce overall development time.
+
+One example of implementing their work: I was able to use their form schema validation in order to create validate the form before it got sent to the backend. I am not too good with schemas therfore having this resource really helped me speed up the process.
+
+### Schema Validation
+
+```
+import { zodResolver } from 'mantine-form-zod-resolver';
+import { z } from 'zod';
+import { useForm } from '@mantine/form';
+
+const schema = z.object({
+  name: z
+    .string()
+    .min(2, { message: 'Name should have at least 2 letters' }),
+  email: z.string().email({ message: 'Invalid email' }),
+  age: z.number().min(18, {
+    message: 'You must be at least 18 to create an account',
+  }),
+});
+
+const form = useForm({
+  mode: 'uncontrolled',
+  initialValues: {
+    name: '',
+    email: '',
+    age: 16,
+  },
+  validate: zodResolver(schema),
+});
+
+form.validate();
+form.errors;
+// -> {
+//  name: 'Name should have at least 2 letters',
+//  email: 'Invalid email',
+//  age: 'You must be at least 18 to create an account'
+// }
+```
+
+## Fontsource
+
+This is a resource which takes the google fonts and makes them super easy to implement in a React application. All you need to do to change the font is install the package:
+
+    1. ```npm install @fontsource/open-sans```
+
+then you chose a google font you want and import that into your code:
+
+    2. ```import "@fontsource/open-sans"; // Defaults to weight 400.```
+
+lastly you reference it in your globalcss file. Use the font family name associated with the font package you installed:
+
+    3. ```body { font-family: "Open Sans", sans-serif; }```
+
+Thats all it takes. I use it in nearly every project I develop now.
+
+These are but just some of the resources I use a lot in every day developing. I hope I have guided you in the right direction and you found something new!
+
+Cheers!
+-Nico
+
+<Callout type="default">
+  “Stay afraid, but do it anyway. What's important is the action. You don’t have
+  to wait to be confident. Just do it and eventually the confidence will
+  follow.” — Carrie Fisher
+</Callout>
