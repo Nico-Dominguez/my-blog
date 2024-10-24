@@ -38,7 +38,7 @@ const Projects = () => {
           description="Built an rental van app. Build using React Router and includes simple authentication"
           icon={<FaVanShuttle size="40" />}
           tags="React, CSS, React-Router, Firebase"
-          href="https://vanlifeappnico.netlify.app/"
+          href="https://van-life-nd.netlify.app/"
         />
         <ProjectCard
           name="Nico"
